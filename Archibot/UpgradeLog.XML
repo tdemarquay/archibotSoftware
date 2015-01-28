@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Archibot_1st_version">
+</Property><Property Name="Fichier solution" Value="C:\Users\Hassane\Downloads\Archibot_1st_version\Archibot_1st_version\Archibot_1st_version.sln">
+</Property><Property Name="Fichier d'options utilisateur" Value="C:\Users\Hassane\Downloads\Archibot_1st_version\Archibot_1st_version\Archibot_1st_version.suo">
+</Property><Property Name="Date" Value="mardi 20 janvier 2015">
+</Property><Property Name="Time" Value="20:24">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="Archibot_1st_version.sln" Description="Fichier correctement sauvegardé en tant que C:\Users\Hassane\Downloads\Archibot_1st_version\Archibot_1st_version\Backup\Archibot_1st_version.sln">
+</Event><Event ErrorLevel="0" Project="" Source="Archibot_1st_version.suo" Description="Fichier correctement sauvegardé en tant que C:\Users\Hassane\Downloads\Archibot_1st_version\Archibot_1st_version\Backup\Archibot_1st_version.suo">
+</Event><Event ErrorLevel="0" Project="Archibot_1st_version" Source="Archibot_1st_version\Archibot_1st_version.csproj" Description="Fichier projet correctement sauvegardé en tant que C:\Users\Hassane\Downloads\Archibot_1st_version\Archibot_1st_version\Backup\Archibot_1st_version\Archibot_1st_version.csproj">
+</Event><Event ErrorLevel="0" Project="Archibot_1st_version" Source="Archibot_1st_version\Archibot_manager.cs" Description="Fichier correctement sauvegardé en tant que C:\Users\Hassane\Downloads\Archibot_1st_version\Archibot_1st_version\Backup\Archibot_1st_version\Archibot_manager.cs">
+</Event><Event ErrorLevel="0" Project="Archibot_1st_version" Source="Archibot_1st_version\Array.cs" Description="Fichier correctement sauvegardé en tant que C:\Users\Hassane\Downloads\Archibot_1st_version\Archibot_1st_version\Backup\Archibot_1st_version\Array.cs">
+</Event><Event ErrorLevel="0" Project="Archibot_1st_version" Source="Archibot_1st_version\Generated_image.cs" Description="Fichier correctement sauvegardé en tant que C:\Users\Hassane\Downloads\Archibot_1st_version\Archibot_1st_version\Backup\Archibot_1st_version\Generated_image.cs">
+</Event><Event ErrorLevel="0" Project="Archibot_1st_version" Source="Archibot_1st_version\Program.cs" Description="Fichier correctement sauvegardé en tant que C:\Users\Hassane\Downloads\Archibot_1st_version\Archibot_1st_version\Backup\Archibot_1st_version\Program.cs">
+</Event><Event ErrorLevel="0" Project="Archibot_1st_version" Source="Archibot_1st_version\Properties\AssemblyInfo.cs" Description="Fichier correctement sauvegardé en tant que C:\Users\Hassane\Downloads\Archibot_1st_version\Archibot_1st_version\Backup\Archibot_1st_version\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="Archibot_1st_version" Source="Archibot_1st_version\Archibot_1st_version.csproj" Description="Projet correctement converti">
+</Event><Event ErrorLevel="3" Project="Archibot_1st_version" Source="Archibot_1st_version\Archibot_1st_version.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="Archibot_1st_version.sln" Description="Solution correctement convertie">
+</Event><Event ErrorLevel="3" Project="" Source="Archibot_1st_version.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Archibot_1st_version" Source="Archibot_1st_version\Archibot_1st_version.csproj" Description="Analyse terminée : la mise à niveau n'est pas requise pour les fichiers projet.">
+</Event></UpgradeLog>

@@ -1,0 +1,16 @@
+C:\Users\Julie Lallée\Documents\Visual Studio 2008\Projects\Archibot_1st_version\Archibot_1st_version\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Julie Lallée\Documents\Visual Studio 2008\Projects\Archibot_1st_version\Archibot_1st_version\bin\Debug\Archibot_1st_version.exe
+C:\Users\Julie Lallée\Documents\Visual Studio 2008\Projects\Archibot_1st_version\Archibot_1st_version\bin\Debug\Archibot_1st_version.pdb
+C:\Users\Julie Lallée\Documents\Visual Studio 2008\Projects\Archibot_1st_version\Archibot_1st_version\obj\Debug\Archibot_1st_version.exe
+C:\Users\Julie Lallée\Documents\Visual Studio 2008\Projects\Archibot_1st_version\Archibot_1st_version\obj\Debug\Archibot_1st_version.pdb
+C:\Users\Hassane\Downloads\Archibot_1st_version\Archibot_1st_version\Archibot_1st_version\obj\Debug\Archibot_1st_version.exe
+C:\Users\Hassane\Downloads\Archibot_1st_version\Archibot_1st_version\Archibot_1st_version\obj\Debug\Archibot_1st_version.pdb
+C:\Users\Hassane\Downloads\Archibot_1st_version\Archibot_1st_version\Archibot_1st_version\bin\Debug\Archibot_1st_version.exe
+C:\Users\Hassane\Downloads\Archibot_1st_version\Archibot_1st_version\Archibot_1st_version\bin\Debug\Archibot_1st_version.pdb
+C:\Users\CX640DX\Downloads\Archibot_1st_version\Archibot_1st_version\Archibot_1st_version\obj\Debug\Archibot_1st_version.exe
+C:\Users\CX640DX\Downloads\Archibot_1st_version\Archibot_1st_version\Archibot_1st_version\obj\Debug\Archibot_1st_version.pdb
+C:\Users\CX640DX\Downloads\Archibot_1st_version\Archibot_1st_version\Archibot_1st_version\obj\Debug\Archibot_1st_version.csprojResolveAssemblyReference.cache
+C:\Users\CX640DX\Downloads\Archibot_1st_version\Archibot_1st_version\Archibot_1st_version\bin\Debug\Archibot_1st_version.exe
+C:\Users\CX640DX\Downloads\Archibot_1st_version\Archibot_1st_version\Archibot_1st_version\bin\Debug\Archibot_1st_version.pdb
+C:\Users\CX640DX\Desktop\Archibot_1st_version\Archibot_1st_version\Archibot_1st_version\obj\Debug\Archibot_1st_version.exe
+C:\Users\CX640DX\Desktop\Archibot_1st_version\Archibot_1st_version\Archibot_1st_version\obj\Debug\Archibot_1st_version.pdb
