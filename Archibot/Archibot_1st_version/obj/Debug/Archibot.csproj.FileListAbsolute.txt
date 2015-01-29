@@ -5,3 +5,6 @@ C:\Users\CX640DX\Desktop\Archibot_1st_version\Archibot_1st_version\Archibot_1st_
 C:\Users\CX640DX\Desktop\Archibot_1st_version\Archibot_1st_version\Archibot_1st_version\obj\Debug\Archibot_1st_version.pdb
 C:\Users\CX640DX\Desktop\Archibot_1st_version\Archibot\Archibot_1st_version\obj\Debug\Archibot_1st_version.exe
 C:\Users\CX640DX\Desktop\Archibot_1st_version\Archibot\Archibot_1st_version\obj\Debug\Archibot_1st_version.pdb
+C:\Users\CX640DX\Desktop\Archibot_1st_version\Archibot\Archibot_1st_version\obj\Debug\Archibot.csprojResolveAssemblyReference.cache
+C:\Users\CX640DX\Desktop\Archibot_1st_version\Archibot\Archibot_1st_version\bin\Debug\Archibot_1st_version.exe
+C:\Users\CX640DX\Desktop\Archibot_1st_version\Archibot\Archibot_1st_version\bin\Debug\Archibot_1st_version.pdb

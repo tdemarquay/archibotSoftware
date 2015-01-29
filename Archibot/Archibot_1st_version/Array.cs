@@ -9,18 +9,12 @@ namespace Archibot_1st_version
     class Array
     {
 
-        public BitArray [] tab_data;    
+        public BitArray tab_data;    
         public int size;
 
         public Array(int size) {
             this.size = size;
-            tab_data = new BitArray[size];
-            
-            for(int i=0;i<size;i++)
-            {
-                tab_data[i] = new BitArray(13);
-                    
-            }
+            tab_data = new BitArray(size * size);        
             set_array();
             print_to_txt();
          
@@ -44,43 +38,45 @@ namespace Archibot_1st_version
                     int y =(int) Math.Round((d * Math.Sin(angle))); 
                     Console.WriteLine("Valeur X :" + x);
                     Console.WriteLine("Valeur Y :" + y);
-                    tab_data[x+6].Set(y+6,true);
-                    
-                   
+
+
+                    Console.WriteLine(" Index :" + (13 * (6-y) + 6+x));
+                    tab_data[(13 * (6 - y) + 6 + x)] = true;
+
                 }
             }
-           
 
-            
-        
-                
-        
         }
 
         public void print_to_txt()
         {
             string[] chaine= new string[13];
-            for(int j=0;j<tab_data.Length;j++)
-            {
-                chaine[j]=null;
-                for (int i = 0;i<tab_data[j].Length;i++ )
+            int counter=0;
+                
+                for (int i = 0;i<tab_data.Length;i+=13 )
                 {
-                    if (tab_data[j].Get(i) == true)
+                    
+                    for(int j=0;j<13;j++)
                     {
-                        chaine[j] =chaine[j]+"X";
+                    if (tab_data[j+i] == true)
+                    {
+
+                        chaine[counter] =chaine[counter]+"X";
                     }
                     else
                     {
-                        chaine[j] =chaine[j]+" ";
+                        chaine[counter] =chaine[counter]+" ";
                     }
-
+                  }
+                    chaine[counter]=chaine[counter];
+                    counter++;
                 }
-
+        System.IO.File.WriteAllLines(@"C:\Users\CX640DX\Desktop\test2.txt", chaine);
             }
             
-           System.IO.File.WriteAllLines(@"C:\Users\CX640DX\Desktop\test2.txt", chaine);
+           
         }
 
         
     }
-}
+
