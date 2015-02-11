@@ -16,7 +16,7 @@ namespace Archibot_1st_version
 
             scan_table = new Array(size,path);
 
-            scan_table.set_array();
+            size = scan_table.set_array();
             scan_table.print_to_txt();
             
             map = new Generated_image(ref scan_table,size);

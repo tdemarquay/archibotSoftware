@@ -52,7 +52,7 @@ namespace Archibot_1st_version
                 {
                     if (final_table.getXY(i, j))
                     {
-                        g.DrawLine(myPen, j, i, j + 1, i + 1);
+                        g.DrawLine(myPen, j, i, j , i+1);
                         //Console.WriteLine("test" + j + "x2=" + x2 + "y2=" + y2);
                     }
                 }
