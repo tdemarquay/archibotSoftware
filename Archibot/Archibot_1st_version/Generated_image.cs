@@ -15,9 +15,9 @@ namespace Archibot_1st_version
        // public  Bitmap image;
         public Array final_table;
 
-        public Generated_image()
-        { 
-        
+        public Generated_image(ref Array table)
+        {
+            final_table = table;
         }
         
 

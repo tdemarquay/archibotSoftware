@@ -13,12 +13,10 @@ namespace Archibot_1st_version
         public int size;
         public string path;
 
-        public Array(int size, string pathh) {
+        public Array(int size, string path) {
             this.size = size;
             tab_data = new BitArray(size * size);        
-            set_array();
-            print_to_txt();
-            path=pathh;
+            this.path=path;
          
         }   
 
