@@ -14,16 +14,17 @@ namespace Archibot_1st_version
             if (args.Length == 0)
             {
                 Console.WriteLine("Error : no entry file");
+                Console.Write("Write the path to the file : ");
                 path = Console.ReadLine();
             }
                 
             else
             {
-                Archibot_manager test = new Archibot_manager(13, args[0]);
-
-                Console.ReadLine();
+                path = args[0];
             }
-            
+
+            Archibot_manager test = new Archibot_manager(500, path);
+            Console.ReadLine();
 
         }
     }

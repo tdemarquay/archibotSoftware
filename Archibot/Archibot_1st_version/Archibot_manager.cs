@@ -10,14 +10,15 @@ namespace Archibot_1st_version
     {
         public Array scan_table;
         public Generated_image map;
-        public string path;
 
-        public Archibot_manager(int size, string pathh)
+        public Archibot_manager(int size, string path)
         {
+
             scan_table = new Array(size,path);
+
             scan_table.set_array();
-            scan_table.print_to_txt();
-            path = pathh;
+            //scan_table.print_to_txt();
+            
             map = new Generated_image(ref scan_table);
         
         }

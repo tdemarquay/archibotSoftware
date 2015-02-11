@@ -23,7 +23,7 @@ namespace Archibot_1st_version
         public void set_array()
 
         {
-            System.IO.StreamReader file =new System.IO.StreamReader(@"C:\Users\CX640DX\Desktop\test.txt");
+            System.IO.StreamReader file =new System.IO.StreamReader(path);
             string chaine="";
             while((chaine = file.ReadLine())!=null )
 
@@ -40,8 +40,8 @@ namespace Archibot_1st_version
                     Console.WriteLine("Valeur Y :" + y);
 
 
-                    Console.WriteLine(" Index :" + (13 * (6-y) + 6+x));
-                    tab_data[(13 * (6 - y) + 6 + x)] = true;
+                    Console.WriteLine(" Index :" + size * y + x);
+                    tab_data[size * y + x] = true;
 
                 }
             }
