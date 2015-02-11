@@ -24,39 +24,53 @@ namespace Archibot_1st_version
 
         {
             System.IO.StreamReader file =new System.IO.StreamReader(path);
-            string chaine="";
+            string chaine = "";
+            int i = 0;
             while((chaine = file.ReadLine())!=null )
 
             {
-                if (chaine.Split('/').Length != 1)
+                if (chaine.Length!=0)
                 {
                     Console.WriteLine(chaine + "\n");
-                    double d = Convert.ToDouble(chaine.Split('/')[1]);
-                    double angle = Convert.ToDouble(chaine.Split('/')[0]) * Math.PI / 180;
-                    int  x =(int)Math.Round ((d * Math.Cos(angle)));
+                    double d = Convert.ToDouble(chaine.Split(' ')[1].Replace(".", ",")) / 10;
+                    double angle = Convert.ToDouble(chaine.Split(' ')[0].Replace(".", ",")) * Math.PI / 180;
+                    int x = Convert.ToInt32(Math.Round(d * Math.Cos(angle), 0));
 
-                    int y =(int) Math.Round((d * Math.Sin(angle))); 
+                    int y = Convert.ToInt32(Math.Round(d * Math.Sin(angle), 0));
                     Console.WriteLine("Valeur X :" + x);
                     Console.WriteLine("Valeur Y :" + y);
 
 
                     Console.WriteLine(" Index :" + size * y + x);
-                    tab_data[size * y + x] = true;
+                    setXY(x, y);
 
                 }
+                i++;
             }
 
         }
 
+        public void setXY(int x, int y, Boolean boo = true)
+        {
+            int div = Convert.ToInt32(size/2);
+            tab_data[size * (y + div) + (x + div)] = boo;
+        }
+
+        public Boolean getXY(int x, int y)
+        {
+            int div = Convert.ToInt32(size / 2);
+            return tab_data[size * (y) + (x)];
+        }
+
         public void print_to_txt()
         {
-            string[] chaine= new string[13];
+            string[] chaine= new string[size];
             int counter=0;
                 
-                for (int i = 0;i<tab_data.Length;i+=13 )
+                for (int i = 0;i<tab_data.Length;i=i+size )
                 {
                     
-                    for(int j=0;j<13;j++)
+                    for(int j=0;j<size;j++)
                     {
                     if (tab_data[j+i] == true)
                     {
@@ -71,7 +85,7 @@ namespace Archibot_1st_version
                     chaine[counter]=chaine[counter];
                     counter++;
                 }
-        System.IO.File.WriteAllLines(@"C:\Users\CX640DX\Desktop\test2.txt", chaine);
+        System.IO.File.WriteAllLines(@"test2.txt", chaine);
             }
             
            

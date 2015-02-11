@@ -23,7 +23,7 @@ namespace Archibot_1st_version
                 path = args[0];
             }
 
-            Archibot_manager test = new Archibot_manager(500, path);
+            Archibot_manager test = new Archibot_manager(600, path);
             Console.ReadLine();
 
         }
