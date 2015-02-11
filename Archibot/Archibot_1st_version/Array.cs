@@ -11,12 +11,14 @@ namespace Archibot_1st_version
 
         public BitArray tab_data;    
         public int size;
+        public string path;
 
-        public Array(int size) {
+        public Array(int size, string pathh) {
             this.size = size;
             tab_data = new BitArray(size * size);        
             set_array();
             print_to_txt();
+            path=pathh;
          
         }   
 
