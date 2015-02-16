@@ -12,10 +12,11 @@ namespace Archibot_1st_version
         public BitArray tab_data;    
         public int size;
         public string path;
+        public int div;
 
         public Array(int size, string path) {
             this.size = size;
-            tab_data = new BitArray(size * size);        
+            div = Convert.ToInt32(size / 2);     
             this.path=path;
          
         }   
@@ -23,6 +24,7 @@ namespace Archibot_1st_version
         public int set_array()
 
         {
+            tab_data = new BitArray(size * size);      
             System.IO.StreamReader file =new System.IO.StreamReader(path);
             string chaine = "";
             
@@ -51,9 +53,9 @@ namespace Archibot_1st_version
             return size;
         }
 
-        void updateArray()
+        void updateArray(int newSize)
         {
-            BitArray tab_data2 = new BitArray(size * size);  
+            BitArray tab_data2 = new BitArray(newSize * newSize);  
 
             for(int i=0; i<tab_data.Length;i++)
             {
@@ -65,14 +67,15 @@ namespace Archibot_1st_version
 
         public void setXY(int x, int y, Boolean boo = true)
         {
-            int div = Convert.ToInt32(size / 2);
+            
             Boolean change = false;
-            while((x+div)>=size || (y+div) >= size)
+            while((x+div)>=(size-10) || (y+div) >= (size-10))
             {
                 size = size + 100;
+                div = Convert.ToInt32(size / 2);
                 change = true;
             }
-            if(change)updateArray();
+            if(change)updateArray(size);
 
             tab_data[size * (y+div) + (x+div)] = boo;
         }
