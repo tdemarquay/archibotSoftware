@@ -10,22 +10,36 @@ namespace Archibot_1st_version
     {
 
         public BitArray tab_data;    
-        public int size;
         public string path;
-        public int div;
         public double CLEANING_DISTANCE = 7.0;
+        public int maxX;
+        public int maxY;
+        List<Point> liste;
 
         public Array(int size, string path) {
-            this.size = size;
-            div = Convert.ToInt32(size / 2);     
             this.path=path;
-         
-        }   
+            maxX = 0;
+            maxY = 0;
+            liste = new List<Point>();
+        }
 
-        public int set_array()
-
+        public List<Point> getListe()
         {
-            tab_data = new BitArray(size * size);      
+            return liste;
+        }
+
+        public int getMaxX()
+        {
+            return maxX;
+        }
+        public int getMaxY()
+        {
+            return maxY;
+        }
+
+        public void set_array()
+
+        {  
             System.IO.StreamReader file =new System.IO.StreamReader(path);
             string chaine = "";
             
@@ -45,16 +59,18 @@ namespace Archibot_1st_version
                     Console.WriteLine("Valeur Y :" + y);
 
 
-                    Console.WriteLine(" Index :" + size * y + x);
-                    setXY(x, y);
+                    //Console.WriteLine(" Index :" + size * y + x);
+                    liste.Add(new Point(x, y));
+                    if (Math.Abs(x) > maxX) maxX = Math.Abs(x);
+                    if (Math.Abs(y) > maxY) maxY = Math.Abs(y);
 
                 }
                 i++;
             }
-            return size;
+            //return size;
         }
 
-        void updateArray(int newSize)
+        /*void updateArray(int newSize)
         {
             BitArray tab_data2 = new BitArray(newSize * newSize);  
 
@@ -64,9 +80,9 @@ namespace Archibot_1st_version
             }
             tab_data = null;
             tab_data = tab_data2;
-        }
+        }*/
 
-        public void setXY(int x, int y, Boolean boo = true)
+       /* public void setXY(int x, int y, Boolean boo = true)
         {
             
             Boolean change = false;
@@ -79,9 +95,9 @@ namespace Archibot_1st_version
             if(change)updateArray(size);
 
             tab_data[size * (y+div) + (x+div)] = boo;
-        }
+        }*/
 
-        public Boolean getXY(int x, int y)
+       /* public Boolean getXY(int x, int y)
         {
             int div = Convert.ToInt32(size / 2);
             return tab_data[size * (y) + (x)];
@@ -158,7 +174,7 @@ namespace Archibot_1st_version
                     }
                     if (delete<3) tab_data[i] = false;
                 }
-            }
+            }*/
 
         }
         

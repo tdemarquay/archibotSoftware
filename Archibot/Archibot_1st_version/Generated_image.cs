@@ -16,12 +16,12 @@ namespace Archibot_1st_version
     {
         
        // public  Bitmap image;
-        public Array final_table;
         public int size;
+        public Array array;
 
-        public Generated_image(ref Array table, int size)
+        public Generated_image(Array array, int size)
         {
-            final_table = table;
+            this.array = array;
             this.size = size;
 
         }
@@ -30,10 +30,10 @@ namespace Archibot_1st_version
         {
             long memory = GC.GetTotalMemory(true);
 
-            var b = new Bitmap(size, size);
-            for (int i = 0; i < size; i++)
+            var b = new Bitmap(array.getMaxX()*2,array.getMaxY()*2);
+            for (int i = 0; i < array.getMaxX()*2; i++)
             {
-                for (int j = 0; j < size; j++)
+                for (int j = 0; j < array.getMaxY()*2; j++)
                 {
                     b.SetPixel(i, j, Color.White);
                 }
@@ -46,16 +46,14 @@ namespace Archibot_1st_version
             myPen = new System.Drawing.Pen(System.Drawing.Color.Black);
             memory = GC.GetTotalMemory(true);
             Console.WriteLine(memory);
-            for (int j = 0; j < size; j++)//ligne
+            foreach (Point lis in array.getListe())
             {
-                for (int i = 0; i < size; i++)//Colonnes
-                {
-                    if (final_table.getXY(i, j))
-                    {
-                        g.DrawLine(myPen, j, i, j , i+1);
+                int maxX = Convert.ToInt32(array.getMaxX() );
+                int maxY = Convert.ToInt32(array.getMaxY() );
+                g.DrawLine(myPen, lis.getX() + maxX, lis.getY() + maxY, lis.getX() + maxX , lis.getY() + maxY + 1);
                         //Console.WriteLine("test" + j + "x2=" + x2 + "y2=" + y2);
-                    }
-                }
+                    
+                
 
 
             }
