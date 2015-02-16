@@ -13,6 +13,7 @@ namespace Archibot_1st_version
         public int size;
         public string path;
         public int div;
+        public double CLEANING_DISTANCE = 7.0;
 
         public Array(int size, string path) {
             this.size = size;
@@ -86,6 +87,18 @@ namespace Archibot_1st_version
             return tab_data[size * (y) + (x)];
         }
 
+        public int getY(int index)
+        {
+            int test = index % size;
+            int test2 = index / size;
+            return test2;
+        }
+
+        public int getX(int index)
+        {
+            return index - getY(index) * size; ;
+        }
+
         public void print_to_txt()
         {
             string[] chaine= new string[size];
@@ -111,10 +124,43 @@ namespace Archibot_1st_version
                 }
         System.IO.File.WriteAllLines(@"test2.txt", chaine);
             }
-            
-           
-        }
 
+
+            public void clean()
+            {
+
+                for(int i=0;i<tab_data.Length;i++)
+                {
+                    int delete =0 ;
+                    if(tab_data[i])
+                    {
+                        for (int j = 0; j < tab_data.Length; j++)
+                        {
+                            if(i!=j && tab_data[j])
+                            {
+                                int x1 = getX(i);
+                                int y1 = getY(i);
+                                int x2 = getX(j);
+                                int y2 = getY(j);
+
+                                int sousX = Math.Abs(x2 - x1);
+                                int sousY = Math.Abs(y2 - y1);
+                                double sousXCarre = Math.Pow(sousX, 2);
+                                double sousYCarre = Math.Pow(sousY, 2);
+
+                                double dist = Math.Sqrt(sousXCarre + sousYCarre);
+
+                                if (dist < CLEANING_DISTANCE) delete ++;
+                            }
+                        }
+
+                        
+                    }
+                    if (delete<3) tab_data[i] = false;
+                }
+            }
+
+        }
         
     }
 
