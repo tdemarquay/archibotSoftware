@@ -11,11 +11,11 @@ using System.Collections;
 namespace Archibot_1st_version
 {
 
-     
+
     class Generated_image
     {
-        
-       // public  Bitmap image;
+
+        // public  Bitmap image;
         public int size;
         public Array array;
         private List<Droite> droites;
@@ -32,10 +32,10 @@ namespace Archibot_1st_version
         {
             long memory = GC.GetTotalMemory(true);
 
-            var b = new Bitmap(array.getMaxX()*2,array.getMaxY()*2);
-            for (int i = 0; i < array.getMaxX()*2; i++)
+            var b = new Bitmap(array.getMaxX() * 2, array.getMaxY() * 2);
+            for (int i = 0; i < array.getMaxX() * 2; i++)
             {
-                for (int j = 0; j < array.getMaxY()*2; j++)
+                for (int j = 0; j < array.getMaxY() * 2; j++)
                 {
                     b.SetPixel(i, j, Color.White);
                 }
@@ -64,7 +64,7 @@ namespace Archibot_1st_version
                 {
                     tmp = new Droite(lis.getX(), lis.getY(), lis2.getX(), lis2.getY());
                     double proportion = calculProportion(tmp);
-                    if(proportion<0.00000000001 && proportion!=0.0)
+                    if (proportion < 0.00000000001 && proportion != 0.0)
                         droites.Add(tmp);
                 }
             }
@@ -76,17 +76,18 @@ namespace Archibot_1st_version
             double dist;
             double num, den;
 
-            if (droite.hasA0()) 
+            if (droite.hasA0())
                 return 0;
             foreach (Point lis in array.getListe())
             {
                 num = Math.Abs(droite.getA() * Convert.ToDouble(lis.getX()) - Convert.ToDouble(lis.getY()) + droite.getB());
-                den = Math.Sqrt(Math.Pow(droite.getA(),2) + 1);
+                den = Math.Sqrt(Math.Pow(droite.getA(), 2) + 1);
                 dist = num / den;
+                dist = FindDistanceToSegment(lis, droite);
 
-                if (dist == 0.0 )
+                if (dist == 0.0)
                 {
-                    if(lis.getX()!=droite.getX1() && lis.getY()!=droite.getY1())
+                    if (lis.getX() != droite.getX1() && lis.getY() != droite.getY1())
                     {
                         if (lis.getX() != droite.getX2() && lis.getY() != droite.getY2())
                         {
@@ -94,10 +95,10 @@ namespace Archibot_1st_version
                         }
                     }
                 }
-                    
+
             }
             dist = droite.getDistance();
-            return dist/Convert.ToDouble(nbre);
+            return dist / Convert.ToDouble(nbre);
         }
 
         public void drawPoints(Graphics g, System.Drawing.Pen myPen)
@@ -130,22 +131,52 @@ namespace Archibot_1st_version
             }
         }
 
-        float minimum_distance(Droite droit, Point p)
+        // Calculate the distance between
+        // point pt and the segment p1 --> p2.
+        private double FindDistanceToSegment(Point pt2, Droite droite)
         {
-            // Return minimum distance between line segment vw and point p
-            double l2 = Math.Pow(droit.getDistance(),2);
+            Point closest;
+            PointF pt = new PointF((float)(pt2.getX()), (float)(pt2.getY()));
+            PointF p1 = new PointF((float)(droite.getX1()), (float)(droite.getY1()));
+            PointF p2 = new PointF((float)(droite.getX2()), (float)(droite.getY2()));
 
+            double dx = Convert.ToDouble(droite.getX2()) - Convert.ToDouble(droite.getX1());
+            double dy = Convert.ToDouble(droite.getY2()) - Convert.ToDouble(droite.getY1());
+            if ((dx == 0) && (dy == 0))
+            {
+                // It's a point not a line segment.
+                //closest = p1;
+                dx = pt.X - p1.X;
+                dy = pt.Y - p1.Y;
+                return Math.Sqrt(dx * dx + dy * dy);
+            }
 
-            //const float l2 = length_squared(v, w);  // i.e. |w-v|^2 -  avoid a sqrt
-            if (l2 == 0.0) return distance(p, v);   // v == w case
-            // Consider the line extending the segment, parameterized as v + t (w - v).
-            // We find projection of point p onto the line. 
-            // It falls where t = [(p-v) . (w-v)] / |w-v|^2
-            const float t = dot(p - v, w - v) / l2;
-            if (t < 0.0) return distance(p, v);       // Beyond the 'v' end of the segment
-            else if (t > 1.0) return distance(p, w);  // Beyond the 'w' end of the segment
-            const vec2 projection = v + t * (w - v);  // Projection falls on the segment
-            return distance(p, projection);
+            // Calculate the t that minimizes the distance.
+            double t = ((Convert.ToDouble(pt2.getX()) - Convert.ToDouble(droite.getX1())) * dx + (Convert.ToDouble(pt2.getY()) - Convert.ToDouble(droite.getY1())) * dy) /
+                (dx * dx + dy * dy);
+
+            // See if this represents one of the segment's
+            // end points or a point in the middle.
+            if (t < 0)
+            {
+                closest = new Point(droite.getX1(), droite.getY1());
+                dx = Convert.ToDouble(pt2.getX()) - Convert.ToDouble(droite.getX1());
+                dy = Convert.ToDouble(pt2.getY()) - Convert.ToDouble(droite.getY1());
+            }
+            else if (t > 1)
+            {
+                closest = new Point(droite.getX2(), droite.getY2());
+                dx = Convert.ToDouble(pt2.getX()) - Convert.ToDouble(droite.getX2());
+                dy = Convert.ToDouble(pt2.getY()) - Convert.ToDouble(droite.getY2());
+            }
+            else
+            {
+                closest = new Point(droite.getX1() + Convert.ToInt32(t * dx), droite.getY1() + Convert.ToInt32(t * dy));
+                dx = Convert.ToDouble(pt2.getX()) - Convert.ToDouble(closest.getX());
+                dy = Convert.ToDouble(pt2.getY()) - Convert.ToDouble(closest.getY());
+            }
+
+            return Math.Sqrt(dx * dx + dy * dy);
         }
     }
 }
