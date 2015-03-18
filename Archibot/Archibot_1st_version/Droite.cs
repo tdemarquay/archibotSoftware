@@ -19,7 +19,7 @@ namespace Archibot_1st_version
             this.y1 = y1;
             this.y2 = y2;
             a0 = false;
-            distance = Math.Sqrt(Math.Pow(2,x2-x1)+Math.Pow(2,y2-y1));
+            distance = Math.Sqrt(Math.Pow(x2-x1,2)+Math.Pow(y2-y1,2));
             if ((Convert.ToDouble(x1) - Convert.ToDouble(x2)) == 0.0)
                 a0 = true;
             else a = (Convert.ToDouble(y1) - Convert.ToDouble(y2)) / (Convert.ToDouble(x1) - Convert.ToDouble(x2));
@@ -63,10 +63,10 @@ namespace Archibot_1st_version
             this.b = b;
         }
 
-        public void setDistance(double dist)
+        /*public void setDistance(double dist)
         {
             distance = dist;
-        }
+        }*/
 
         public int getX1()
         {

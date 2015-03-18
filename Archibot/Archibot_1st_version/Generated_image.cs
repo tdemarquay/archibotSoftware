@@ -14,17 +14,21 @@ namespace Archibot_1st_version
 
     class Generated_image
     {
+        public int PROP = 15;
+        public bool DEBUG = false;
 
         // public  Bitmap image;
         public int size;
         public Array array;
         private List<Droite> droites;
+        System.IO.StreamWriter file;
 
         public Generated_image(Array array, int size)
         {
             this.array = array;
             this.size = size;
             droites = new List<Droite>();
+             if(DEBUG)file = new System.IO.StreamWriter(@"C:\Users\Thibault\WriteLines2.txt");
 
         }
 
@@ -41,6 +45,7 @@ namespace Archibot_1st_version
                 }
             }
             generateDroites();
+            removeDouble();
             Graphics g = Graphics.FromImage(b);
             RectangleF rectf = new RectangleF(120, 10, 200, 50);
             g.DrawString("2D Map", new Font("Tahoma", 14), Brushes.Black, rectf);
@@ -55,8 +60,35 @@ namespace Archibot_1st_version
 
         }
 
+        public void removeDouble()
+        {
+            List<Droite> tmpDroites = new List<Droite>();
+
+            foreach (Droite droit in droites)
+            {
+                tmpDroites.Add(droit);
+            }
+
+            foreach (Droite droit in droites)
+            {
+                
+                foreach (Droite droitt in droites)
+                {
+                    if(!droitt.hasA0() && !droit.hasA0() && droitt.getA()==droit.getA() && droitt.getB()==droit.getB() && droitt!=droit)
+                    {
+                        if (droit.getDistance() < droitt.getDistance())
+                            tmpDroites.Remove(droit);
+                        else tmpDroites.Remove(droitt);
+                    }
+                }
+            }
+
+            droites = tmpDroites;
+        }
+
         public void generateDroites()
         {
+          
             Droite tmp;
             foreach (Point lis in array.getListe())
             {
@@ -64,7 +96,7 @@ namespace Archibot_1st_version
                 {
                     tmp = new Droite(lis.getX(), lis.getY(), lis2.getX(), lis2.getY());
                     double proportion = calculProportion(tmp);
-                    if (proportion < 0.00000000001 && proportion != 0.0)
+                    if (proportion < PROP && proportion != 0.0)
                         droites.Add(tmp);
                 }
             }
@@ -74,23 +106,27 @@ namespace Archibot_1st_version
         {
             int nbre = 1;
             double dist;
-            double num, den;
 
+            if(DEBUG)file.WriteLine("A(" + droite.getX1() + "," + droite.getY1() + ") " + "B(" + droite.getX2() + "," + droite.getY2() + ") ");
             if (droite.hasA0())
                 return 0;
             foreach (Point lis in array.getListe())
             {
-                num = Math.Abs(droite.getA() * Convert.ToDouble(lis.getX()) - Convert.ToDouble(lis.getY()) + droite.getB());
-                den = Math.Sqrt(Math.Pow(droite.getA(), 2) + 1);
-                dist = num / den;
+                //num = Math.Abs(droite.getA() * Convert.ToDouble(lis.getX()) - Convert.ToDouble(lis.getY()) + droite.getB());
+                //den = Math.Sqrt(Math.Pow(droite.getA(), 2) + 1);
+                //dist = num / den;
                 dist = FindDistanceToSegment(lis, droite);
 
+
+               
+                    //Console.WriteLine("P(" + lis.getX() + "," + lis.getY() + ") " + "A(" + droite.getX1() + "," + droite.getY1() + ") " + "B(" + droite.getX2() + "," + droite.getY2() + ") " + " dist1 = " + dist + " dist2 = " + dist2);
                 if (dist == 0.0)
                 {
                     if (lis.getX() != droite.getX1() && lis.getY() != droite.getY1())
                     {
                         if (lis.getX() != droite.getX2() && lis.getY() != droite.getY2())
                         {
+                            if(DEBUG)file.WriteLine("P(" + lis.getX() + "," + lis.getY() + "), distance : " + dist);
                             nbre++;
                         }
                     }
@@ -98,6 +134,11 @@ namespace Archibot_1st_version
 
             }
             dist = droite.getDistance();
+            if(DEBUG)
+            if ((droite.getDistance() / Convert.ToDouble(nbre)) < 0.00000000001 && (droite.getDistance() / Convert.ToDouble(nbre)) != 0.0 && nbre!=0)
+                file.WriteLine("Diistance droite : " + dist + " Proportion = " + (droite.getDistance() / Convert.ToDouble(nbre)) + " A(" + droite.getX1() + "," + droite.getY1() + "), B(" + droite.getX2() + "," + droite.getY2() + ")");
+            if (nbre == 0) return 0;
+            else
             return dist / Convert.ToDouble(nbre);
         }
 

@@ -49,14 +49,14 @@ namespace Archibot_1st_version
             {
                 if (chaine.Length!=0)
                 {
-                    Console.WriteLine(chaine + "\n");
+                    //Console.WriteLine(chaine + "\n");
                     double d = Convert.ToDouble(chaine.Split(' ')[1].Replace(".", ",")) / 10;
                     double angle = Convert.ToDouble(chaine.Split(' ')[0].Replace(".", ",")) * Math.PI / 180;
                     int x = Convert.ToInt32(Math.Round(d * Math.Cos(angle), 0));
 
                     int y = Convert.ToInt32(Math.Round(d * Math.Sin(angle), 0));
-                    Console.WriteLine("Valeur X :" + x);
-                    Console.WriteLine("Valeur Y :" + y);
+                    //Console.WriteLine("Valeur X :" + x);
+                    //Console.WriteLine("Valeur Y :" + y);
 
 
                     //Console.WriteLine(" Index :" + size * y + x);
