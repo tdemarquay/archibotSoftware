@@ -5,7 +5,7 @@ using System.Text;
 using System.Collections;
 using System.IO;
 
-namespace ArchibotNewVersion
+namespace Archibot_1st_version
 {
   public  class Mapping
     {

@@ -22,13 +22,13 @@ namespace Archibot_1st_version
         public int MULTIPIXEL = 1;
 
         public int size;
-        public Array array;
+        public Mapping array;
         //private List<Droite> droites;
         //private StreamWriter file;
         private List<Droite> droites;
         private List<Point> tmpPoint;
 
-        public Generated_image(Array array, int size)
+        public Generated_image(Mapping array, int size)
         {
             droites = new List<Droite>();
             this.array = array;
