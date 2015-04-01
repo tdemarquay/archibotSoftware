@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Diagnostics;
 
 namespace ArchibotNewVersion
 {
@@ -16,7 +17,7 @@ namespace ArchibotNewVersion
         public static int value_tx;
         // transalation en y par rapport au y départ
         public static int value_ty;
-        public static int angle_orientation;
+       public static double angle_orientation;
         public static StreamWriter file_orders;
 
 
@@ -26,32 +27,20 @@ namespace ArchibotNewVersion
 
 
             file_orders = new StreamWriter(@"Orders.txt");
-            Mapping  scan = new Mapping("je teste");
-            scan.give_order(new Point(2, 2));
-            
+            Mapping  scan = new Mapping(args[0]);
 
-           /*set_data();
+
+            //Console.WriteLine(Math.Atan2(9,8));
+           set_data();
             scan.readInformation();
             scan.Test_crit();
-            scan.choose_crit_point();
-            //Array tab = new Array(path);
-            //tab.set_array();
-            //tab.Test_crit1();
-            //tab.SaveCrits();
-            //tab.give_order(new Point(2,2));
-            //  Archibot_manager test = new Archibot_manager(path);
-            // test.set_data();
-
-            //   Array test = new Array (3, path);
-            // test.give_order(new Point(2, 2));
-
-            //test.set_array();
-            //test.liste.Add(new Point(14, -1));
-            // test.liste .Add(new Point(15, -4));
-            //test.show();
-            // test.Check(test.liste.ElementAt(0));
-            //  test.Test_crit1();*/
-            Console.ReadLine();
+            
+           scan.give_order();
+            scan.update_data();
+           // scan.update_data(); 
+            
+          
+           Launch_Python(scan);
         }
        
 
@@ -60,31 +49,31 @@ namespace ArchibotNewVersion
         string chaine = "";
         int counter = 0;
          ///// fichier de stockage de données
-            System.IO.StreamReader file_data = new System.IO.StreamReader(@"./data.txt");
+            System.IO.StreamReader file_data = new System.IO.StreamReader(@"./data2.txt");
 
             while ((chaine = file_data.ReadLine()) != null)
             {
                 counter++;
                 if (counter == 1)
                 {
-                    value_index = Convert.ToInt32(chaine) + 1;
+                    value_index = Convert.ToInt32(chaine) ;
 
                 }
                 else
                 {
 
                     // On itère pour pouvoir accèder a la derniere position la  derniere position du robot 
-                    value_tx = Convert.ToInt32(chaine.Split(',')[0]);
-                    value_ty = Convert.ToInt32(chaine.Split(',')[1]);
-                    angle_orientation = Convert.ToInt32(chaine.Split(',')[2]);
+                    value_tx = Convert.ToInt32(chaine.Split('.')[0]);
+                    value_ty = Convert.ToInt32(chaine.Split('.')[1]);
+                   
                 }
-
+                
             }
             Console.WriteLine("Iteration : " + value_index);
             Console.WriteLine("Tx  : " + value_tx);
             Console.WriteLine("Ty : " + value_ty);
-            Console.WriteLine("Orientation angle : " + value_ty);
-        
+       
+            file_data.Close();
         }
 
         public static void Launch_Python(Mapping scan) { 
@@ -93,6 +82,13 @@ namespace ArchibotNewVersion
             Point.XmlPoint.SaveXmlFile1(scan.getListe());
             Point.XmlPoint.SaveXmlFile2(scan.getCritListe());
             //  launch python and quit the program and
+
+             Process process = new Process();
+             process.StartInfo.FileName = "Ccall";
+             process.StartInfo.Arguments = @"./Orders.txt";
+             process.Start();
+           
+            Process.GetCurrentProcess().Kill();
         }
 
         

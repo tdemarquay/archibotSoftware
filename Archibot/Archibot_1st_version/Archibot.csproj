@@ -52,9 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Archibot_manager.cs" />
-    <Compile Include="Array.cs" />
+    <Compile Include="Droite.cs" />
     <Compile Include="Generated_image.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Mapping.cs" />
+    <Compile Include="Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

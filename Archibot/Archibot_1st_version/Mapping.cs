@@ -10,7 +10,7 @@ namespace ArchibotNewVersion
   public  class Mapping
     {
 
-          
+        static int constWall=300;
         public string path;
         public double CLEANING_DISTANCE = 7.0;
         public int maxX;
@@ -60,17 +60,17 @@ namespace ArchibotNewVersion
                     Console.WriteLine(chaine + "\n");
                      
                        // test_angles_distance(d,tmp1,angle,tmp2);
-                    double d = Convert.ToDouble(chaine.Split(' ')[1].Replace(".", ",")) / 10;
+                    double d = Convert.ToDouble(chaine.Split(' ')[1]) / 10;
                     
-                    double angle = ConvertToRadian( Convert.ToDouble(chaine.Split(' ')[0].Replace(".", ","))) ;
+                    double angle = ConvertToRadian( Convert.ToDouble(chaine.Split(' ')[0])) ;
            
                   if ( d > 0 && d <200)
                     {
                         
                         
 
-                        int x = Convert.ToInt32(Math.Round(d * Math.Cos(angle), 0));
-                        int y = Convert.ToInt32(Math.Round(d * Math.Sin(angle), 0));
+                        int x = Convert.ToInt32(Math.Round(d * Math.Cos(angle), 0)) + Archibot_manager.value_tx;
+                        int y = Convert.ToInt32(Math.Round(d * Math.Sin(angle), 0)) + Archibot_manager.value_ty;
                         Console.WriteLine("d :" + d);
                         Console.WriteLine("angle :" + angle);
                         Console.WriteLine("Valeur X :" + x);
@@ -117,7 +117,7 @@ namespace ArchibotNewVersion
         {
             int x1; 
             int y1;
-            int counter=0;
+            
 
             Console.WriteLine("TEST-------->\n");
            Point  point1= new Point(0,0);
@@ -240,32 +240,54 @@ namespace ArchibotNewVersion
 
             }
             }
+            
             return closer_point;
         }
             ///Donne l'ordre au robot d'avancer d'uu certains angle et jusqu'a une certaine distance du point critique 
 
-        public void give_order( Point point_to_go)
+        public void give_order()
             {
-                //Point point_to_go = choose_crit_point();
-               int x= Archibot_manager.value_tx;
-               int y = Archibot_manager.value_ty;
-                
-             // Position relative par rapport a la position actuelle 
-               x = x - point_to_go.getX();
-               y = y - point_to_go.getY();
-
-               double angle = Math.Atan(y / x);
-               angle = ((angle / Math.PI) * 180)-Archibot_manager.angle_orientation;
+               Point point_to_go = choose_crit_point();
+               Points_Crit.Remove(point_to_go);
+               int x= point_to_go.x-Archibot_manager.value_tx ;
+               int y =point_to_go.y-Archibot_manager.value_ty;
+               Console.WriteLine("x , y" + x +"" +y);
+               double d = Math.Sqrt(Math.Pow(point_to_go.getX() - x, 2) + Math.Pow(point_to_go.getY() - y, 2));
+               d = d - constWall;
+              
+               
+              
+              // Archibot_manager.value_tx = x;
+               //Archibot_manager.value_ty = y;
+               double angle = Math.Atan2(y , x);
+               Archibot_manager.value_tx = Convert.ToInt32(Math.Round(d * Math.Cos(angle), 0));
+               Archibot_manager.value_ty = Convert.ToInt32(Math.Round(d * Math.Sin(angle), 0));
+               //Console.WriteLine("angle" + angle);
+               angle = ((angle / Math.PI) * 180);
+              // Console.WriteLine("angle" + angle);
                if (angle < 0)
                {
                    angle = 360 + angle;
                }
+               Archibot_manager.angle_orientation = angle;
             //On ecrit l'ordre
-               Archibot_manager.file_orders.WriteLine( angle.ToString()+" 30");
+               Archibot_manager.file_orders.WriteLine( angle.ToString() +" "+ constWall);
                Archibot_manager.file_orders.Flush();
                Archibot_manager.file_orders.Close();
                //Console.WriteLine("Job done ");
             }
+
+        public void update_data()
+        {   System.IO.StreamWriter file_data = new System.IO.StreamWriter(@"./data.txt");
+           
+            
+           file_data.WriteLine(Archibot_manager.value_index);
+            file_data.Flush();
+            file_data.WriteLine(Archibot_manager.value_tx+","+Archibot_manager.value_ty);
+            file_data.Flush();
+            file_data.Close();
+        
+        }
         
 
 
